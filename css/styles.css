@@ -8,8 +8,9 @@
     --white-1: #e9e9e9;
     --gray-1: #838383;
     --gray-2: #4c4c4c;
+    --red-0: #d9534f;
     --corner-1: 10px;
-    --corner-2: 5px;  
+    --corner-2: 5px;
 }
 
 /* Apply Inter globally */
@@ -22,17 +23,16 @@ body {
 /* 🎨 Form Container */
 .form-container {
     max-width: 600px;
-    margin: 0 auto;
+    margin: 40px auto;
     padding: 20px;
     background-color: var(--white-0);
     border-radius: var(--corner-1);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* 📝 Form Groups */
 .form-group {
-    margin-bottom: 16px;
     position: relative;
+    margin-bottom: 16px;
 }
 
 label {
@@ -50,21 +50,11 @@ input[type="tel"] {
     border: 1px solid var(--gray-1);
     border-radius: var(--corner-2);
     font-size: 16px;
-    transition: border-color 0.3s ease;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="tel"]:focus {
-    border-color: var(--black-1);
-    outline: none;
-}
-
-/* ✅ Checkbox & Radio Buttons */
-input[type="checkbox"],
-input[type="radio"] {
+/* ✅ Checkbox */
+input[type="checkbox"] {
     margin-right: 10px;
-    cursor: pointer;
 }
 
 .checkbox-group {
@@ -79,24 +69,11 @@ input[type="radio"] {
     cursor: pointer;
 }
 
-/* 🔥 Tooltip Error Messages */
-.error-tooltip {
-    position: absolute;
-    background-color: #d32f2f;
-    color: white;
-    font-size: 12px;
-    padding: 5px;
-    border-radius: 5px;
-    top: -25px;
-    left: 5px;
-    white-space: nowrap;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    pointer-events: none;
-}
-
-input:invalid + .error-tooltip {
-    opacity: 1;
+/* 🔥 Muted (disabled) fields */
+.muted {
+    background-color: var(--white-1);
+    color: var(--gray-1);
+    cursor: not-allowed;
 }
 
 /* 🚀 Submit Button */
@@ -109,22 +86,36 @@ input:invalid + .error-tooltip {
     border: none;
     border-radius: var(--corner-2);
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background-color 0.2s;
 }
 
 .submit-btn:hover {
     background-color: var(--gray-2);
 }
 
-.submit-btn:disabled {
-    background-color: var(--gray-1);
-    cursor: not-allowed;
+/* 🛑 Error Handling */
+.error-tooltip {
+    background-color: var(--red-0);
+    color: white;
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: var(--corner-2);
+    position: absolute;
+    right: -160px;
+    top: 0;
+    white-space: nowrap;
+    visibility: visible;
 }
 
-/* 🔄 Muted Field (Disabled) */
-.muted {
-    opacity: 0.5;
-    pointer-events: none;
+.error-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -6px;
+    transform: translateY(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent var(--red-0) transparent transparent;
 }
 
 /* 🌍 Responsiveness */
@@ -132,10 +123,13 @@ input:invalid + .error-tooltip {
     .form-container {
         padding: 15px;
     }
-    
     input[type="text"],
     input[type="email"],
     input[type="tel"] {
         font-size: 14px;
+    }
+    .error-tooltip {
+        right: auto;
+        left: 0;
     }
 }
