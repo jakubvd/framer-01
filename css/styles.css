@@ -22,7 +22,8 @@ body {
 
 /* 🎨 Form Container */
 .form-container {
-    max-width: 600px;
+    max-width: 1000px;
+    min-width: 700px;
     margin: 40px auto;
     padding: 20px;
     background-color: var(--white-0);
