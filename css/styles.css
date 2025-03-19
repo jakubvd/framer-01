@@ -12,23 +12,27 @@
     --corner-2: 5px;  
 }
 
-/* Apply Inter globally */
+/* 🌍 Apply Inter globally */
 body {
     font-family: 'Inter', sans-serif;
+    background-color: var(--black-0);
+    color: var(--black-1);
 }
 
 /* 🎨 Form Container */
 .form-container {
     max-width: 600px;
-    margin: 0 auto;
+    margin: 40px auto;
     padding: 20px;
     background-color: var(--white-0);
     border-radius: var(--corner-1);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* 📝 Form Groups */
 .form-group {
     margin-bottom: 16px;
+    position: relative; /* Needed for tooltip positioning */
 }
 
 label {
@@ -40,22 +44,41 @@ label {
 /* 🔘 Input Fields */
 input[type="text"],
 input[type="email"],
+input[type="tel"],
+input[type="radio"],
+input[type="checkbox"] {
+    font-size: 16px;
+}
+
+/* ✅ Text Inputs */
+input[type="text"],
+input[type="email"],
 input[type="tel"] {
     width: 100%;
     padding: 10px;
     border: 1px solid var(--gray-1);
     border-radius: var(--corner-2);
-    font-size: 16px;
+    transition: border 0.3s ease;
 }
 
-/* ✅ Checkbox */
+/* ✨ Focus Effect */
+input:focus {
+    border-color: var(--black-1);
+    outline: none;
+}
+
+/* ✅ Checkbox & Radio */
+input[type="radio"],
 input[type="checkbox"] {
-    margin-right: 10px;
+    margin-right: 8px;
+    cursor: pointer;
 }
 
+/* 📌 Checkbox Group */
 .checkbox-group {
     display: flex;
     flex-direction: column;
+    gap: 6px;
 }
 
 .checkbox-group label {
@@ -65,9 +88,31 @@ input[type="checkbox"] {
     cursor: pointer;
 }
 
-/* 🔥 Hide elements */
-.hidden {
-    display: none;
+/* 🎭 Muted "Other" Input Field (Disabled by default) */
+input[name="otherPosition"] {
+    background-color: var(--white-1);
+    color: var(--gray-2);
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* 🟢 Enable Input when 'Inne' is selected */
+input[name="otherPosition"]:not(:disabled) {
+    background-color: white;
+    color: var(--black-0);
+    pointer-events: all;
+    opacity: 1;
+}
+
+/* ❌ Error Tooltip */
+.error-tooltip {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -18px;
 }
 
 /* 🚀 Submit Button */
@@ -75,19 +120,22 @@ input[type="checkbox"] {
     width: 100%;
     padding: 12px;
     font-size: 16px;
+    font-weight: bold;
     background-color: var(--black-1);
     color: white;
     border: none;
     border-radius: var(--corner-2);
     cursor: pointer;
+    transition: background 0.3s ease;
 }
 
+/* 🔒 Disabled State */
 .submit-btn:disabled {
     background-color: var(--gray-1);
     cursor: not-allowed;
 }
 
-/* 🌍 Responsiveness */
+/* 🌍 Responsive Fixes */
 @media (max-width: 768px) {
     .form-container {
         padding: 15px;
@@ -97,5 +145,9 @@ input[type="checkbox"] {
     input[type="email"],
     input[type="tel"] {
         font-size: 14px;
+    }
+
+    .error-tooltip {
+        font-size: 11px;
     }
 }
